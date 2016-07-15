@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    >
+
+
+    <TabHost
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tabHost"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@android:id/tabs"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                ></TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent">
+
+                <!-- Army Tab -->
+                <LinearLayout
+                    android:id="@+id/armies"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:layout_width="wrap_content"
+                        android:layout_height="300dp"
+                        android:id="@+id/armyView" />
+
+                    <!-- Input commands -->>
+                    <TableLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal">
+                        <!-- Input row 1-->
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <Spinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:id="@+id/input_army_label"
+                                android:spinnerMode="dropdown"
+                                android:layout_gravity="center_vertical" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="Move:"
+                                android:layout_gravity="center_vertical" />
+
+                            <AutoCompleteTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:ems="8"
+                                android:id="@+id/input_army_location"
+                                android:maxLines="1"
+                                android:maxLength="20"
+                                android:layout_gravity="center_vertical" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Siege:"/>
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    android:id="@+id/siege"
+                                    />
+                            </LinearLayout>
+
+
+                        </TableRow>
+
+                        <!-- Input row 2 -->
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="Support:"
+                                android:layout_gravity="center_vertical" />
+
+                            <EditText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:id="@+id/input_army_support"
+                                android:layout_column="1"
+                                android:maxLines="1"
+                                android:maxLength="4" />
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="Status:"
+                                    android:layout_gravity="center_vertical" />
+
+                                <Spinner
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/input_army_status"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:layout_column="2"
+                                    android:layout_gravity="center_vertical" />
+                            </LinearLayout>
+
+                            <Button
+                                style="?android:attr/buttonStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Add Army"
+                                android:id="@+id/add_army"
+                                android:layout_gravity="center_vertical"
+                                android:layout_column="3" />
+
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal">
+
+                    <!-- ARMY SUBMIT -->
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18dp"
+                            android:text="Submit"
+                            android:id="@+id/armySubmit"
+                            android:layout_gravity="center_horizontal" />
+
+                    <!-- ARMY CLEAR -->
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18dp"
+                            android:text="Clear"
+                            android:id="@+id/armyClear"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <!-- Garrison Tab -->
+
+                <LinearLayout
+                    android:id="@+id/garrisons"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:layout_width="wrap_content"
+                        android:layout_height="300dp"
+                        android:id="@+id/garView" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:id="@+id/input_gar_label"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:spinnerMode="dropdown"
+                                    android:layout_gravity="center_vertical" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_marginRight="2dp"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="Move:"
+                                    android:layout_gravity="center_vertical" />
+
+                                <AutoCompleteTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:ems="8"
+                                    android:id="@+id/input_gar_location"
+                                    android:maxLines="1"
+                                    android:maxLength="20"
+                                    android:layout_gravity="center_vertical" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_marginRight="2dp"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="Support:"
+                                    android:layout_gravity="center_vertical" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:id="@+id/input_gar_support"
+                                    android:checked="true" />
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceSmall"
+                                        android:text="Status:"
+                                        android:layout_gravity="center_vertical" />
+
+                                    <Spinner
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/input_gar_status"
+                                        android:textAppearance="?android:attr/textAppearanceSmall"
+                                        android:layout_column="2"
+                                        android:layout_gravity="center_vertical" />
+                                </LinearLayout>
+
+                            </TableRow>
+                        </TableLayout>
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add Garrison"
+                            android:id="@+id/add_gar"
+                            android:layout_gravity="center_vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal" >
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18dp"
+                            android:text="Submit"
+                            android:id="@+id/garSubmit"
+                            android:layout_gravity="center_horizontal" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18dp"
+                            android:text="Clear"
+                            android:id="@+id/garClear"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <!-- Fleet Tab -->
+                <LinearLayout
+                    android:id="@+id/fleets"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:layout_width="wrap_content"
+                        android:layout_height="300dp"
+                        android:id="@+id/fleetView" />
+
+                    <TableLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <Spinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:id="@+id/input_fleet_label"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:spinnerMode="dropdown"
+                                android:layout_gravity="center_vertical" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="Move:"
+                                android:layout_gravity="center_vertical" />
+
+                            <AutoCompleteTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:ems="8"
+                                android:id="@+id/input_fleet_location"
+                                android:maxLines="1"
+                                android:maxLength="18"
+                                android:layout_gravity="center_vertical" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Port:"/>
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    android:id="@+id/port"
+                                    />
+                            </LinearLayout>
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="CO Fleet:"
+                                android:layout_gravity="center_vertical" />
+
+                            <EditText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:id="@+id/input_fleet_support"
+                                android:layout_column="1"
+                                android:maxLines="1"
+                                android:maxLength="3" />
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="Status:"
+                                    android:layout_gravity="center_vertical" />
+
+                                <Spinner
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/input_fleet_status"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:layout_column="2"
+                                    android:layout_gravity="center_vertical" />
+                            </LinearLayout>
+
+                            <Button
+                                style="?android:attr/buttonStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Add Fleet"
+                                android:id="@+id/add_fleet"
+                                android:layout_gravity="center_vertical" />
+
+                        </TableRow>
+                    </TableLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal" >
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18dp"
+                            android:text="Submit"
+                            android:id="@+id/fleetSubmit"
+                            android:layout_gravity="center_horizontal" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18dp"
+                            android:text="Clear"
+                            android:id="@+id/fleetClear"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Mercenary Tab -->
+                <LinearLayout
+                    android:id="@+id/mercs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:layout_width="wrap_content"
+                        android:layout_height="300dp"
+                        android:id="@+id/mercView" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:id="@+id/input_merc_label"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:spinnerMode="dropdown"
+                                    android:layout_gravity="center_vertical" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_marginRight="2dp"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="Move:"
+                                    android:layout_gravity="center_vertical" />
+
+                                <AutoCompleteTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:ems="8"
+                                    android:id="@+id/input_merc_location"
+                                    android:maxLines="1"
+                                    android:maxLength="20"
+                                    android:layout_gravity="center_vertical" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_marginRight="2dp"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="Support:"
+                                    android:layout_gravity="center_vertical" />
+
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:id="@+id/input_merc_support"
+                                    android:layout_column="1"
+                                    android:maxLines="1"
+                                    android:maxLength="4" />
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceSmall"
+                                        android:text="Status:"
+                                        android:layout_gravity="center_vertical" />
+
+                                    <Spinner
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/input_merc_status"
+                                        android:textAppearance="?android:attr/textAppearanceSmall"
+                                        android:layout_column="2"
+                                        android:layout_gravity="center_vertical" />
+                                </LinearLayout>
+
+                            </TableRow>
+                        </TableLayout>
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add Merc"
+                            android:id="@+id/add_merc"
+                            android:layout_gravity="center_vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal" >
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18dp"
+                            android:text="Submit"
+                            android:id="@+id/mercSubmit"
+                            android:layout_gravity="center_horizontal" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18dp"
+                            android:text="Clear"
+                            android:id="@+id/mercClear"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</LinearLayout>
